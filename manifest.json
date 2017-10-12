@@ -1,0 +1,36 @@
+{
+	"manifest_version": 2,
+
+	"name": "Show Message Plugin",
+	"description": "This extension showing message",
+	"version": "1.0",
+
+	"browser_action":
+	{
+		"default_icon": "images/icon-16.png",
+		"default_popup": "popup.html"
+	},
+
+	"background": {
+		"persistent": true,
+		"scripts": ["scripts/background.js"]
+	},
+
+	"content_scripts" : [{
+		"run_at" :"document_end",
+		"matches" : [ "https://*/*", "http://*/*"],
+		"js" : ["scripts/content.js"]
+	}],
+
+	 "web_accessible_resources": [
+    "styles/inject.css",
+    "scripts/inject.js"
+  ],
+
+	"permissions": [
+		"identity",
+		"identity.email",
+		"activeTab",
+		"storage"
+	]
+}
